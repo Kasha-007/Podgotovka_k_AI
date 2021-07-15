@@ -1,7 +1,7 @@
 # Hi, my name is Yasha and this is my first English project
 # import PyQt5
 # Make changes in browser
-# Check changes in Pycharm
+# Check changes in Pycharm 2
 # Ok, changes are visible
 import sys
 from PyQt5.QtWidgets import QApplication, QWidget
