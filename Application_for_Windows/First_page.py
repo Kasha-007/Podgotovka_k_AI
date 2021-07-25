@@ -14,6 +14,19 @@ class Example(QWidget):
         super().__init__()
         self.initUI()
 
+    def load_txt(self):
+        k = open('Hi, Yasha')
+        with k:
+            k2 = k.read()
+            self.qle.setText(k2)
+            self.setText_btn.setText(k2)
+
+    def set_txt(self):
+        k = open('Hi, Yasha', 'w+')
+        self.loadText_btn.setText(self.qle.text())
+        with k:
+            k.write(self.qle.text())
+
     def initUI(self):
         qbtn = QPushButton('Quit', self)
         qbtn.clicked.connect(QCoreApplication.instance().quit)
@@ -28,17 +41,20 @@ class Example(QWidget):
         self.qle.move(60, 100)
         self.qle.setText('Hi')
 
-        setText_btn = QPushButton('Hi', self)
-        setText_btn.clicked.connect(lambda x: self.qle.setText('Hi'))
-        setText_btn.resize(60, 25)
-        setText_btn.move(60, 140)
+        self.setText_btn = QPushButton('Hi', self)
+        self.setText_btn.clicked.connect(self.load_txt)
+        self.setText_btn.resize(60, 25)
+        self.setText_btn.move(60, 140)
 
-        loadText_btn = QPushButton('', self)
-        loadText_btn.clicked.connect(lambda x: loadText_btn.setText(self.qle.text()))
-        loadText_btn.resize(60, 25)
-        loadText_btn.move(130, 140)
+        self.loadText_btn = QPushButton('', self)
+        self.loadText_btn.clicked.connect(self.set_txt)
+        self.loadText_btn.resize(60, 25)
+        self.loadText_btn.move(130, 140)
 
         self.show()
+        k = open('Hi, Yasha', 'w')
+        with k:
+            return k.write('Hi')
 
 
 if __name__ == '__main__':
